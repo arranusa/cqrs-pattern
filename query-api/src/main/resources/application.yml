@@ -1,0 +1,44 @@
+server:
+  port: 8082
+  servlet:
+    context-path: /query
+
+spring:
+  application:
+    name: query
+  main:
+    allow-bean-definition-overriding: true
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/querydb?autoReconnect=true&failOverReadOnly=false&maxReconnects=10&useUnicode=true&characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+
+  jpa:
+    database: MYSQL
+    generate-ddl: true
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        format_sql: true
+
+  activemq:
+    user: admin
+    password: admin
+    broker-url: tcp://ZEPYRUSG14:61616
+    non-blocking-redelivery: true
+    packages:
+      trust-all: false
+      trusted: com.example.cqrs-pattern
+    pool:
+      enabled: true
+      max-connections: 10
+
+swagger:
+  config:
+    url_prefix: /
